@@ -32,7 +32,7 @@ pipeline {
         steps {
               container('maven')
               {
-                 git url: 'https://github.com/solipuram/jenkins-example1.git', credentialsId: 'github_id',branch: 'main'
+                 git url: 'https://github.com/solipuram/jenkins-example1.git', credentialsId: 'github_id',branch: 'master'
               }
             }
        }
