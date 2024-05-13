@@ -42,13 +42,41 @@ pipeline {
               container('maven')
               {
                 sh '''
-                mvn -v
-                mvn clean install
-                ls -lrth  
-                ls -lrt target
+                    mvn -v
+                    mvn clean compile
+                    ls -lrth  
+                '''
+            }
+          }
+        }
+    stage('Test')
+        {
+          steps {   
+              container('maven')
+              {
+                sh '''
+                    mvn -v
+                    mvn test 
+                    ls -lrth  
+                    ls -lrth target
+                    cd target
+                    cd surefire-reports
+                    ls -lrth
                 '''
               }
           }
         }
+
+    
+    stage('publish')
+    {
+        steps{
+            container('maven')
+            {
+               junit 'target/surefire-reports/*.xml'
+                
+            }
+        }
+    }
     }
 }
