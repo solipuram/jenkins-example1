@@ -45,6 +45,7 @@ pipeline {
                 mvn -v
                 mvn clean install
                 ls -lrth  
+                ls -lrt target
                 '''
               }
           }
